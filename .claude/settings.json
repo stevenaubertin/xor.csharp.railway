@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreCommit": [
+      {
+        "command": "dotnet format --verify-no-changes"
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "dotnet build",
+      "dotnet test",
+      "dotnet run",
+      "dotnet format"
+    ]
+  }
+}
