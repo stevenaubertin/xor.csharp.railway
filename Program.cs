@@ -37,21 +37,13 @@ namespace xor.csharp.railway
         static void Main(string[] args)
         {
             var request = new Request { Name = "Steven Aubertin", Email = "stevenaubertin@gmail.com" };
-            //var request = new Request { Name = new string('1', 70), Email = "stevenaubertin@gmail.com" };
-
-            //var result = ValidateName(request)
-            //    .Bind(ValidateLength)
-            //    .Bind(ValidateEmail);
-
-            //var result = ValidateName(request)
-            //    .Compose(ValidateLength, ValidateEmail);
 
             var result = request.Compose(
                 input => input is null ? "Input value can't be null" : (Result<Request, string>)input,
                 ValidateName,
                 ValidateLength,
                 ValidateEmail,
-                input => new Request //Supports labmda
+                input => new Request
                 {
                     Email = input.Email,
                     Name = string.Join("", input.Name.Select(x => x switch
@@ -64,9 +56,7 @@ namespace xor.csharp.railway
                         _ => x
                     }).ToArray())
                 },
-                SwitchAdapter.ToSwitch<Request, string>(ToUpper)// Adapts non-switch functions
-                //,input => "Error types is still supported uncomment to return an error"
-                //,input => throw new ArgumentException("DANS MON TEMPS")
+                SwitchAdapter.ToSwitch<Request, string>(ToUpper)
             );
 
             if (!result) Console.WriteLine(result.Error);

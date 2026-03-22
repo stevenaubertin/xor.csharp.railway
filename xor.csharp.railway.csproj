@@ -5,9 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Results\" />
-    <Folder Include="Compositions\" />
-    <Folder Include="Options\" />
-  </ItemGroup>
 </Project>
